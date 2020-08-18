@@ -1,5 +1,6 @@
 from selenium import webdriver
 from time import sleep
+from cryptography.fernet import Fernet
 
 class InstaBot:
     def __init__(self, username, pw):
@@ -19,5 +20,9 @@ class InstaBot:
 def get_unfollowers(self):
     self.driver.find_element_by_xpath("//a[contains(@href, '/{}')]".format(self.username)).click()
 
-
-my_bot = InstaBot('the_subhayu_roy', pw)
+key = Fernet.generate_key() #this is your "password"
+cipher_suite = Fernet(key)
+pw = input("Enter your Instagram password: ")
+encoded_text = cipher_suite.encrypt(pw)
+decoded_text = cipher_suite.decrypt(encoded_text)
+my_bot = InstaBot('the_shadow_of_a_tear', decoded_text)
