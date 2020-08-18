@@ -19,7 +19,7 @@ def scrape_data(username):
     return parse_data(meta.attrs['content'])
 
 if __name__=="__main__":
-    username = input("Enter your username: ")
+    username = input("Enter the username: ")
     data = scrape_data(username)
     print("This account has {} followers".format(data["Followers"]))
     print("This account has {} following".format(data["Following"]))
